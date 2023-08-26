@@ -32,6 +32,6 @@ To Run Background process in our project needs to activate `redis`, `celery work
 COMMANDS TO RUN inside our project directory with activation of virtual environment
 
 1) `redis-server` to activate redis # for Queuing Tasks
-2) `celery worker -A project_name --loglevel=debug --concurrency=4` to actiave celery beat    
-3) `celery -A project_name beat` to activate celery beat    
-4) `celery -A project_name beat -l INFO` to activate celery beat scheduler
+2) `celery worker -A neo_bundle --loglevel=debug --concurrency=4` to actiave celery beat    
+3) `celery -A neo_bundle beat` to activate celery beat    
+4) `celery -A neo_bundle beat -l INFO` to activate celery beat scheduler

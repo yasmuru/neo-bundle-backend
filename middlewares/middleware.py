@@ -9,7 +9,7 @@ from django.conf import LazySettings
 from django.http import HttpResponse, JsonResponse
 
 from app import models
-from project_name import constants
+from neo_bundle import constants
 
 settings = LazySettings()
 

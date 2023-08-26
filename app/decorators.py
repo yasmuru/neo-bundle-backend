@@ -3,7 +3,7 @@ from uuid import UUID
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 
-from project_name import constants as const, utils
+from neo_bundle import constants as const, utils
 from uuid import UUID
 from app import models
 

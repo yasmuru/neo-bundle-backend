@@ -13,7 +13,7 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 
 from app import models, serializers
-from project_name import constants as const, utils
+from neo_bundle import constants as const, utils
 
 
 @swagger_auto_schema(method='post',

@@ -1,4 +1,4 @@
-"""project_name URL Configuration
+"""neo_bundle URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -26,14 +26,14 @@ from rest_framework import routers, permissions
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
-from app import registration
+from app import registration, views
 
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="project_name Backend APIs",
+      title="neo_bundle Backend APIs",
       default_version='v1',
-      description="List of APIs used in project_name",
+      description="List of APIs used in neo_bundle",
       # terms_of_service="https://www.google.com/policies/terms/",
       # contact=openapi.Contact(email="contact@snippets.local"),
       # license=openapi.License(name="BSD License"),
@@ -52,7 +52,8 @@ urlpatterns = [
     url('auth/login/', registration.login),
     url('auth/signup/', registration.signup),
     url('auth/forgot-password/', registration.forgot_password),
-    url('auth/reset-password/', registration.reset_password)
+    url('auth/reset-password/', registration.reset_password),
+    url('balance/', views.get_balance)
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [

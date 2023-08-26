@@ -6,47 +6,47 @@ volumes:
 services:
   redis:
     image: "redis:alpine"
-  project_name:
+  neo_bundle:
     restart: always
     build: .
-    image: project_name_backend
+    image: neo_bundle_backend
     env_file: .env
     ports:
       - "8002:8006"
-    command: gunicorn -w 10 project_name.wsgi:application -b :8006 -t 9999
+    command: gunicorn -w 10 neo_bundle.wsgi:application -b :8006 -t 9999
     volumes:
-      - .:/project_name
-      - backend-static:/project_name/static
+      - .:/neo_bundle
+      - backend-static:/neo_bundle/static
     depends_on:
       - redis
   celery:
     build: .
-    container_name: project_name_celery_worker
-    command: celery worker -A project_name --loglevel=debug --concurrency=4
+    container_name: neo_bundle_celery_worker
+    command: celery worker -A neo_bundle --loglevel=debug --concurrency=4
     volumes:
-      - .:/project_name
+      - .:/neo_bundle
     depends_on:
       - redis
-      - project_name
+      - neo_bundle
   celery-beat:
     build: .
-    container_name: project_name_celery_beat
+    container_name: neo_bundle_celery_beat
     environment:
         CELERY_BROKER_URL: 'redis://redis:6379'
-    command: celery -A project_name beat --loglevel=debug --scheduler=django_celery_beat.schedulers:DatabaseScheduler
+    command: celery -A neo_bundle beat --loglevel=debug --scheduler=django_celery_beat.schedulers:DatabaseScheduler
     volumes:
-      - .:/project_name
+      - .:/neo_bundle
     depends_on:
       - redis
-      - project_name
+      - neo_bundle
 
   nginx:
     restart: always
     build: ./nginx/
-    image: project_name_backend_nginx
+    image: neo_bundle_backend_nginx
     ports:
       - "8084:8084"
     volumes:
-      - backend-static:/var/www/project_name/static
+      - backend-static:/var/www/neo_bundle/static
     depends_on:
-      - project_name
+      - neo_bundle

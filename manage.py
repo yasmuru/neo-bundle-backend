@@ -5,7 +5,7 @@ from decouple import config
 
 if __name__ == "__main__":
     # os.environ.setdefault('DJANGO_CONFIGURATION', config('ENVIRONMENT', 'development'))
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project_name.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "neo_bundle.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError:
