@@ -53,7 +53,8 @@ urlpatterns = [
     url('auth/signup/', registration.signup),
     url('auth/forgot-password/', registration.forgot_password),
     url('auth/reset-password/', registration.reset_password),
-    url('balance/', views.get_balance)
+    url('balance/', views.get_balance),
+    url('transactions/', views.get_transactions)
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
