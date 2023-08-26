@@ -19,26 +19,26 @@ services:
       - backend-static:/neo_bundle/static
     depends_on:
       - redis
-  celery:
-    build: .
-    container_name: neo_bundle_celery_worker
-    command: celery worker -A neo_bundle --loglevel=debug --concurrency=4
-    volumes:
-      - .:/neo_bundle
-    depends_on:
-      - redis
-      - neo_bundle
-  celery-beat:
-    build: .
-    container_name: neo_bundle_celery_beat
-    environment:
-        CELERY_BROKER_URL: 'redis://redis:6379'
-    command: celery -A neo_bundle beat --loglevel=debug --scheduler=django_celery_beat.schedulers:DatabaseScheduler
-    volumes:
-      - .:/neo_bundle
-    depends_on:
-      - redis
-      - neo_bundle
+  # celery:
+  #   build: .
+  #   container_name: neo_bundle_celery_worker
+  #   command: celery worker -A neo_bundle --loglevel=debug --concurrency=4
+  #   volumes:
+  #     - .:/neo_bundle
+  #   depends_on:
+  #     - redis
+  #     - neo_bundle
+  # celery-beat:
+  #   build: .
+  #   container_name: neo_bundle_celery_beat
+  #   environment:
+  #       CELERY_BROKER_URL: 'redis://redis:6379'
+  #   command: celery -A neo_bundle beat --loglevel=debug --scheduler=django_celery_beat.schedulers:DatabaseScheduler
+  #   volumes:
+  #     - .:/neo_bundle
+  #   depends_on:
+  #     - redis
+  #     - neo_bundle
 
   nginx:
     restart: always
